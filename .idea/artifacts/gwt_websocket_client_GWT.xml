@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact name="gwt-websocket-client:GWT">
+    <output-path>$PROJECT_DIR$/gwt-websocket-client/../websocket-server/target/classes/static/</output-path>
+    <root id="root">
+      <element id="gwt-compiler-output" facet="gwt-websocket-client/gwt/GWT" />
+    </root>
+  </artifact>
+</component>
