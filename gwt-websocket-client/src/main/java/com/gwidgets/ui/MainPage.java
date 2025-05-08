@@ -45,7 +45,13 @@ public class MainPage extends Composite {
 	PaperInputElement messageInput;
 	@UiField
 	PaperButtonElement sendButton;
-	
+
+
+	@UiField
+	PaperInputElement userNameRecieveInput;
+
+	@UiField
+	PaperInputElement userNameInput;
 	
     public WebSocket socket;
 
@@ -68,16 +74,21 @@ public class MainPage extends Composite {
 			   div.setInnerText(event.getData());
 			   homePanel.appendChild(div);
 			   notificationsToast.toggle();
+
+			Window.alert(event.getData());
 			return evt;
 		};
 		
 		socket.onopen = (evt) -> {  
 			   GWT.log("socket open");
+			   Window.alert("socket open");
 			return evt;
 		};
 		
 		socket.onclose = (evt) -> {
 			   GWT.log("socket closed");
+			Window.alert("socket closed");
+
 			return evt;
 		};
 	}
@@ -88,9 +99,11 @@ public class MainPage extends Composite {
 		 Event.sinkEvents(homeLink, Event.ONCLICK);
 		 
 		 sendButton.addEventListener("click", new EventListener(){
+
 			@Override
 			public void handleEvent(com.vaadin.polymer.elemental.Event event) {
-				socket.send(messageInput.getTextContent()+"");
+				//Window.alert("button click "+ messageInput.getTextContent());
+				socket.send(messageInput.getValue());
 			}
 		 });
 		 

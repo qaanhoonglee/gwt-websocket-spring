@@ -26,7 +26,6 @@ public class WebSocket extends EventTarget {
 	
 	@JsConstructor
 	public WebSocket(String url){
-		
 	}
 	
 	@JsMethod

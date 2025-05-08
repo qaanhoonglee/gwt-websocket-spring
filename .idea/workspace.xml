@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bbb8b256-c32d-4ccc-ae5c-ed3fd5488416" name="Changes" comment="add initial project configuration files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gwt-websocket-client/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/gwt-websocket-client/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gwt-websocket-client/src/main/java/com/gwidgets/elemental/WebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/gwt-websocket-client/src/main/java/com/gwidgets/elemental/WebSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gwt-websocket-client/src/main/java/com/gwidgets/ui/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/gwt-websocket-client/src/main/java/com/gwidgets/ui/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gwt-websocket-client/src/main/java/com/gwidgets/ui/MainPage.ui.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gwt-websocket-client/src/main/java/com/gwidgets/ui/MainPage.ui.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket-server/src/main/java/com/gwidgets/examples/ScheduledTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/websocket-server/src/main/java/com/gwidgets/examples/ScheduledTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/websocket-server/src/main/java/com/gwidgets/examples/SocketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/websocket-server/src/main/java/com/gwidgets/examples/SocketHandler.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "qaanhoonglee"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/qaanhoonglee/gwt-websocket-spring.git",
+    "accountId": "23b4c2f4-a443-4fe1-a11c-1d0a03fd7781"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2wnIkXS60fRF0HMq12N4XHLcrFN" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -8,11 +46,21 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="WebsocketServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="websocket-server" />
@@ -21,5 +69,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bbb8b256-c32d-4ccc-ae5c-ed3fd5488416" name="Changes" comment="" />
+      <created>1746671057079</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746671057079</updated>
+      <workItem from="1746671058550" duration="6106000" />
+    </task>
+    <task id="LOCAL-00001" summary="add initial project configuration files">
+      <option name="closed" value="true" />
+      <created>1746671241253</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746671241253</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add initial project configuration files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add initial project configuration files" />
   </component>
 </project>

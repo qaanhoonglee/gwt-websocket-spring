@@ -16,8 +16,10 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println("received a new message " + message.getPayload());
-		//session.sendMessage(new TextMessage("received a new message " + message.getPayload()));
+		System.out.println("received a new message: " + message.getPayload());
+		// session.sendMessage(new TextMessage("received a new message: " + message.getPayload()));
+		// Broadcast the message to all sessions
+		brodcastMessage("received a new message: " + message.getPayload());
 	}
 
 	@Override

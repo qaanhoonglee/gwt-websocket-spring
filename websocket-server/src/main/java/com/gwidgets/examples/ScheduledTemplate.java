@@ -13,8 +13,9 @@ public class ScheduledTemplate {
 	@Autowired
 	SocketHandler socketHandler;
 
-   @Scheduled(cron="0 0/2 * * * ?")
-    public void publishUpdates(){
-	   socketHandler.brodcastMessage("server notification " + LocalDateTime.now().toString());
-    }
+   ////@Scheduled(cron="*/15 * * * * ?")
+   //@Scheduled(cron="0 0/5 * * * ?")
+   // public void publishUpdates(){
+	//   socketHandler.brodcastMessage("server notification " + LocalDateTime.now().toString());
+   // }
 }

@@ -67,6 +67,8 @@ xmlns:g='urn:import:com.google.gwt.user.client.ui'>
             
             <section  data-route="send">
               <paper-material class="mainContent" elevation="1">
+                  <paper-input always-float-label="" label="user name" ui:field="userNameInput"></paper-input>
+                  <paper-input always-float-label="" label="push to user name" ui:field="userNameRecieveInput"></paper-input>
                 <paper-input always-float-label="" label="Message to send" ui:field="messageInput"></paper-input>
                 <paper-button raised="" ui:field="sendButton">Send Message through Websocket</paper-button>
               </paper-material>
@@ -76,7 +78,7 @@ xmlns:g='urn:import:com.google.gwt.user.client.ui'>
       </paper-scroll-header-panel>
     </paper-drawer-panel>
  
-    <paper-toast  ui:field="notificationsToast">Received a new notification</paper-toast>
+    <paper-toast  ui:field="notificationsToast">5679 Received a new notification</paper-toast>
 	
 	</g:HTMLPanel>
 	
