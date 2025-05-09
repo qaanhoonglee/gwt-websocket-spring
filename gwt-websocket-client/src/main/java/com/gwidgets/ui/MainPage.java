@@ -1,60 +1,55 @@
 package com.gwidgets.ui;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DeckPanel;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwidgets.elemental.MessageEvent;
 import com.gwidgets.elemental.WebSocket;
 import com.gwidgets.places.HomePlace;
 import com.gwidgets.places.SendPlace;
-import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.EventListener;
-import com.vaadin.polymer.iron.IronPagesElement;
-import com.vaadin.polymer.paper.PaperButtonElement;
-import com.vaadin.polymer.paper.PaperDrawerPanelElement;
-import com.vaadin.polymer.paper.PaperInputElement;
-import com.vaadin.polymer.paper.PaperMaterialElement;
-import com.vaadin.polymer.paper.PaperMenuElement;
-import com.vaadin.polymer.paper.PaperToastElement;
 
 public class MainPage extends Composite {	
 	
 	@UiField
-    PaperMenuElement  paperMenu;
+    VerticalPanel menuPanel;
 	@UiField
-    AnchorElement homeLink;
+    Anchor homeLink;
 	@UiField
-    AnchorElement sendLink;
+    Anchor sendLink;
 
 	@UiField
-	IronPagesElement ironPages;
+	DeckPanel contentPanel;
 	@UiField
-	PaperMaterialElement homePanel;
+	HTMLPanel homePanel;
 	@UiField
-	PaperToastElement notificationsToast;
+	HTML notificationsToast;
 	@UiField
-	PaperInputElement messageInput;
+	TextBox messageInput;
 	@UiField
-	PaperButtonElement sendButton;
-
-
-	@UiField
-	PaperInputElement userNameRecieveInput;
+	Button sendButton;
 
 	@UiField
-	PaperInputElement userNameInput;
+	TextBox userNameRecieveInput;
+
+	@UiField
+	TextBox userNameInput;
 	
     public WebSocket socket;
-
 
 	private static MainPageUiBinder uiBinder = GWT
 			.create(MainPageUiBinder.class);
@@ -65,89 +60,89 @@ public class MainPage extends Composite {
 	//main page constructor
 	public MainPage() {
 		initWidget(uiBinder.createAndBindUi(this));
-		Polymer.endLoading(this.getElement(), (Element) paperMenu);
-		socket = new WebSocket("ws://localhost:8082/gwidgets-ws");
+		socket = WebSocket.create("ws://localhost:8082/notification-ws");
 		
-		socket.onmessage = (evt) -> {
-			   MessageEvent event = evt.cast();
-			   DivElement div = DOM.createDiv().cast();
-			   div.setInnerText(event.getData());
-			   homePanel.appendChild(div);
-			   notificationsToast.toggle();
-
-			Window.alert(event.getData());
-			return evt;
-		};
-		
-		socket.onopen = (evt) -> {  
-			   GWT.log("socket open");
-			   Window.alert("socket open");
-			return evt;
-		};
-		
-		socket.onclose = (evt) -> {
-			   GWT.log("socket closed");
-			Window.alert("socket closed");
-
-			return evt;
-		};
-	}
-	
-	
-	public void initializeEvents(PlaceController controller){
-		Event.sinkEvents(sendLink, Event.ONCLICK);
-		 Event.sinkEvents(homeLink, Event.ONCLICK);
-		 
-		 sendButton.addEventListener("click", new EventListener(){
-
+		socket.setOnmessage(new com.gwidgets.elemental.Function() {
 			@Override
-			public void handleEvent(com.vaadin.polymer.elemental.Event event) {
-				//Window.alert("button click "+ messageInput.getTextContent());
-				socket.send(messageInput.getValue());
+			public com.google.gwt.core.client.JavaScriptObject call(com.google.gwt.core.client.JavaScriptObject evt) {
+				MessageEvent event = evt.cast();
+				DivElement div = DOM.createDiv().cast();
+				div.setInnerText(event.getData());
+				homePanel.getElement().appendChild(div);
+				showToast(event.getData());
+				Window.alert(event.getData());
+				return evt;
 			}
-		 });
-		 
-		 Event.setEventListener(homeLink, e -> {
-	            if(Event.ONCLICK == e.getTypeInt()) {
-	            	ironPages.select("home");
-	            	paperMenu.select("home");
-	           	controller.goTo(new HomePlace("home"));
-	           	slideDrawerIfMobile();
-	            }  
-	        });
-		 
-		 Event.setEventListener(sendLink, e -> {
-            if(Event.ONCLICK == e.getTypeInt()) {
-           	 ironPages.select("users");
-           	 paperMenu.select("users");
-           	       controller.goTo(new SendPlace("send"));
-           	    slideDrawerIfMobile();
-           	    
-            }  
-   });
+		});
 		
+		socket.setOnopen(new com.gwidgets.elemental.Function() {
+			@Override
+			public com.google.gwt.core.client.JavaScriptObject call(com.google.gwt.core.client.JavaScriptObject evt) {
+				GWT.log("socket open");
+				Window.alert("socket open");
+				return evt;
+			}
+		});
 		
+		socket.setOnclose(new com.gwidgets.elemental.Function() {
+			@Override
+			public com.google.gwt.core.client.JavaScriptObject call(com.google.gwt.core.client.JavaScriptObject evt) {
+				GWT.log("socket closed");
+				Window.alert("socket closed");
+				return evt;
+			}
+		});
+        
+        // Mặc định hiển thị trang home
+        contentPanel.showWidget(0);
+	}
+	
+	
+	public void initializeEvents(final PlaceController controller){
+		homeLink.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                contentPanel.showWidget(0);
+                homeLink.addStyleName("selected");
+                sendLink.removeStyleName("selected");
+                controller.goTo(new HomePlace("home"));
+            }
+        });
+		 
+		sendLink.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                contentPanel.showWidget(1);
+                sendLink.addStyleName("selected");
+                homeLink.removeStyleName("selected");
+                controller.goTo(new SendPlace("send"));
+            }
+        });
+        
+        sendButton.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                socket.send(messageInput.getText());
+            }
+        });
 	}
 	
 	
 	
-	public AnchorElement getHomeLink(){
+	public Anchor getHomeLink(){
 		return homeLink;
-		
 	}
 	
-	public AnchorElement getUsersLink(){
+	public Anchor getUsersLink(){
 		return sendLink;
-		
 	}
 	
-	public PaperMenuElement getPaperMenu(){
-		return paperMenu;
+	public VerticalPanel getPaperMenu(){
+		return menuPanel;
 	}
 	
-	public IronPagesElement getIronPagesElement(){
-		return ironPages;
-		
+	public DeckPanel getContentPanel(){
+		return contentPanel;
 	}
 	
 	public interface Presenter {
@@ -155,12 +150,16 @@ public class MainPage extends Composite {
 		public void placeChangeWithoutClickEvent(String placeName);
 	}
 	
-	private void slideDrawerIfMobile(){
-		if( Window.getClientWidth() < 600 ){
-			PaperDrawerPanelElement drawer = (PaperDrawerPanelElement) Polymer.getDocument().getElementById("paperDrawerPanel");
-			drawer.closeDrawer();
-		}
-		
-	}
-
+    private void showToast(String message) {
+        notificationsToast.setText(message);
+        notificationsToast.getElement().getStyle().setProperty("display", "block");
+        
+        // Auto hide after 3 seconds
+        new com.google.gwt.user.client.Timer() {
+            @Override
+            public void run() {
+                notificationsToast.getElement().getStyle().setProperty("display", "none");
+            }
+        }.schedule(3000);
+    }
 }

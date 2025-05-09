@@ -3,83 +3,117 @@
 xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
 	<ui:style>
-	  
+	.container {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	.leftPanel {
+		float: left;
+		width: 200px;
+		background-color: #f0f0f0;
+		height: 100%;
+		border-right: 1px solid #ccc;
+	}
+	.rightPanel {
+		margin-left: 200px;
+		padding: 10px;
+	}
+	.header {
+		background-color: #4285f4;
+		color: white;
+		padding: 10px;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.menuItem {
+		padding: 10px;
+		cursor: pointer;
+	}
+	.menuItem:hover {
+		background-color: #e0e0e0;
+	}
+	.selected {
+		background-color: #e0e0e0;
+	}
+	.content {
+		padding: 20px;
+		background-color: white;
+		border: 1px solid #e0e0e0;
+		border-radius: 2px;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+	}
+	.button {
+		background-color: #4285f4;
+		color: white;
+		padding: 8px 16px;
+		border: none;
+		border-radius: 2px;
+		cursor: pointer;
+		margin-top: 10px;
+	}
+	.input {
+		width: 100%;
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 2px;
+	}
+	.toast {
+		position: fixed;
+		bottom: 20px;
+		left: 50%;
+		transform: translateX(-50%);
+		background-color: #333;
+		color: white;
+		padding: 10px 20px;
+		border-radius: 2px;
+		display: none;
+		z-index: 1000;
+	}
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel addStyleNames="{style.container}">
+		<!-- Drawer/Side panel -->
+		<g:HTMLPanel addStyleNames="{style.leftPanel}">
+			<div class="{style.header}">Menu</div>
+			<g:VerticalPanel ui:field="menuPanel">
+				<g:Anchor ui:field="homeLink" addStyleNames="{style.menuItem}" text="Inbox"/>
+				<g:Anchor ui:field="sendLink" addStyleNames="{style.menuItem}" text="Send"/>
+			</g:VerticalPanel>
+		</g:HTMLPanel>
 
-    <paper-drawer-panel id="paperDrawerPanel">
-      <!-- Drawer Scroll Header Panel -->
-      <paper-scroll-header-panel drawer="" fixed=""> 
-      
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="menu-name">Menu</span>
-        </paper-toolbar>
-
-        <!-- Drawer Content -->
-        <paper-menu attr-for-selected="data-route" selected="home" ui:field="paperMenu">
-          <a data-route="home" class="link" ui:field="homeLink">
-            <iron-icon icon="home"></iron-icon>
-            <span>Inbox</span>
-          </a>
-
-          <a data-route="send" class="link" ui:field="sendLink">
-            <iron-icon icon="info"></iron-icon>
-            <span>Send</span>
-          </a>
-
-          
-        </paper-menu>
-      </paper-scroll-header-panel>
-
-      <!-- Main Area -->
-       <paper-scroll-header-panel main="" id="headerPanelMain" condenses="" keep-condensed-header="">
-   
-        <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar" class="tall">
-           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle=""></paper-icon-button> 
-          
-
-          <span class="space"></span>
-
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
-
-          <div class="middle middle-container">
-            <div class="app-name">GWT Websocket Example</div>
-          </div>
-
-          <!-- Application sub title -->
-          <div class="bottom bottom-container">
-            <div class="bottom-title">description</div>
-          </div>
-        </paper-toolbar>
-
-        <!-- Main Content -->
-        <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="home" ui:field="ironPages">
-            <section  data-route="home">
-              <paper-material ui:field="homePanel" class="mainContent" elevation="1">
-                   <h2> Messages Received from websocket (each 2mins): </h2>
-                   
-              </paper-material>
-            </section>
-            
-            <section  data-route="send">
-              <paper-material class="mainContent" elevation="1">
-                  <paper-input always-float-label="" label="user name" ui:field="userNameInput"></paper-input>
-                  <paper-input always-float-label="" label="push to user name" ui:field="userNameRecieveInput"></paper-input>
-                <paper-input always-float-label="" label="Message to send" ui:field="messageInput"></paper-input>
-                <paper-button raised="" ui:field="sendButton">Send Message through Websocket</paper-button>
-              </paper-material>
-            </section>
-          </iron-pages>
-        </div>
-      </paper-scroll-header-panel>
-    </paper-drawer-panel>
- 
-    <paper-toast  ui:field="notificationsToast">5679 Received a new notification</paper-toast>
-	
+		<!-- Main Content Area -->
+		<g:HTMLPanel addStyleNames="{style.rightPanel}">
+			<div class="{style.header}">GWT Websocket Example</div>
+			
+			<!-- Content Pages -->
+			<g:DeckPanel ui:field="contentPanel">
+				<!-- Home Page -->
+				<g:HTMLPanel addStyleNames="{style.content}" ui:field="homePanel">
+					<h2>Messages Received from websocket (each 2mins):</h2>
+				</g:HTMLPanel>
+				
+				<!-- Send Page -->
+				<g:HTMLPanel addStyleNames="{style.content}">
+					<g:VerticalPanel width="100%">
+						<g:Label text="User name"/>
+						<g:TextBox ui:field="userNameInput" addStyleNames="{style.input}"/>
+						
+						<g:Label text="Push to user name"/>
+						<g:TextBox ui:field="userNameRecieveInput" addStyleNames="{style.input}"/>
+						
+						<g:Label text="Message to send"/>
+						<g:TextBox ui:field="messageInput" addStyleNames="{style.input}"/>
+						
+						<g:Button ui:field="sendButton" text="Send Message through Websocket" addStyleNames="{style.button}"/>
+					</g:VerticalPanel>
+				</g:HTMLPanel>
+			</g:DeckPanel>
+		</g:HTMLPanel>
+		
+		<!-- Toast Notification -->
+		<g:HTML ui:field="notificationsToast" addStyleNames="{style.toast}">Received a new notification</g:HTML>
 	</g:HTMLPanel>
 	
 </ui:UiBinder>

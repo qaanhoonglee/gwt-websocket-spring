@@ -12,7 +12,7 @@ public class SocketConfig implements WebSocketConfigurer{
 	
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(handler(), "/gwidgets-ws").setAllowedOrigins("*");
+		registry.addHandler(handler(), "/notification-ws").setAllowedOrigins("*");
 	}
 	
 	@Bean

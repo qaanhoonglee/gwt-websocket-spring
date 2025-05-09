@@ -44,11 +44,15 @@ public class MainPageActivity extends AbstractActivity implements MainPage.Prese
 	@Override
 	public void placeChangeWithoutClickEvent(String placeName) {
 		// TODO Auto-generated method stub
-		mainPage.getIronPagesElement().select(placeName);
-      	 mainPage.getPaperMenu().select(placeName);
-		
+		if ("home".equals(placeName)) {
+			mainPage.getContentPanel().showWidget(0);
+			mainPage.getHomeLink().addStyleName("selected");
+			mainPage.getUsersLink().removeStyleName("selected");
+		} else if ("send".equals(placeName)) {
+			mainPage.getContentPanel().showWidget(1);
+			mainPage.getUsersLink().addStyleName("selected");
+			mainPage.getHomeLink().removeStyleName("selected");
+		}
 	}
-
-
 
 }

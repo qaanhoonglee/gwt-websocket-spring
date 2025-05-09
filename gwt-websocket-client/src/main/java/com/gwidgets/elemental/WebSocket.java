@@ -1,43 +1,48 @@
 package com.gwidgets.elemental;
 
-import jsinterop.annotations.JsType;
-import jsinterop.annotations.JsConstructor;
-import jsinterop.annotations.JsMethod;
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsProperty;
+import com.google.gwt.core.client.JavaScriptObject;
 
-@JsType(isNative=true, namespace=JsPackage.GLOBAL)
-public class WebSocket extends EventTarget {
+public class WebSocket extends JavaScriptObject {
 	
-	@JsProperty
-	public Function onclose;
+	protected WebSocket() {}
 	
-	@JsProperty
-	public Function onerror;
+	public static native WebSocket create(String url) /*-{
+		return new $wnd.WebSocket(url);
+	}-*/;
 	
-	@JsProperty
-	public Function onmessage;
+	public final native void send(String data) /*-{
+		this.send(data);
+	}-*/;
 	
-	@JsProperty
-	public Function onopen;
+	public final native void close() /*-{
+		this.close();
+	}-*/;
 	
-	@JsProperty
-	public String url;
+	public final native String getUrl() /*-{
+		return this.url;
+	}-*/;
 	
-	@JsConstructor
-	public WebSocket(String url){
-	}
+	public final native void setOnclose(Function callback) /*-{
+		this.onclose = function(e) {
+			return callback.@com.gwidgets.elemental.Function::call(Lcom/google/gwt/core/client/JavaScriptObject;)(e);
+		};
+	}-*/;
 	
-	@JsMethod
-	public native void send(String data);
+	public final native void setOnerror(Function callback) /*-{
+		this.onerror = function(e) {
+			return callback.@com.gwidgets.elemental.Function::call(Lcom/google/gwt/core/client/JavaScriptObject;)(e);
+		};
+	}-*/;
 	
-	@JsMethod
-	public native void close();
+	public final native void setOnmessage(Function callback) /*-{
+		this.onmessage = function(e) {
+			return callback.@com.gwidgets.elemental.Function::call(Lcom/google/gwt/core/client/JavaScriptObject;)(e);
+		};
+	}-*/;
 	
-	
-	
-	
-	
-	
-
+	public final native void setOnopen(Function callback) /*-{
+		this.onopen = function(e) {
+			return callback.@com.gwidgets.elemental.Function::call(Lcom/google/gwt/core/client/JavaScriptObject;)(e);
+		};
+	}-*/;
 }

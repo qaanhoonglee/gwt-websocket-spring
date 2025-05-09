@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module rename-to='Gwtws'>
+<module rename-to='gwtws'>
                     
   <inherits name='com.google.gwt.user.User' />     
   <inherits name='com.google.gwt.place.Place'/>
-   <inherits name='com.google.gwt.activity.Activity' />                   
-  <inherits name="com.vaadin.polymer.Elements"/>
- 
-   <replace-with class="com.gwidgets.client.ClientFactoryImpl">
-    <when-type-is class="com.gwidgets.client.ClientFactory"/>
-   </replace-with>
+  <inherits name='com.google.gwt.activity.Activity' />
+  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+                   
+  <!-- Specify the app entry point class -->
   <entry-point class='com.gwidgets.client.Gwtws' />
+
+  <!-- Specify the paths for translatable code -->
   <source path='client' />
   <source path='ui' />
-   <source path='places' />
-   <source path='activities' />
-   <source path='elemental' />
+  <source path='places' />
+  <source path='activities' />
+  <source path='elemental' />
+  
+  <!-- Allow UiBinder -->
+  <inherits name="com.google.gwt.uibinder.UiBinder" />
+  
+  <!-- Add logging support -->
+  <inherits name="com.google.gwt.logging.Logging"/>
+  <set-property name="gwt.logging.logLevel" value="INFO"/>
+  <set-property name="gwt.logging.enabled" value="TRUE"/>
+  <set-property name="gwt.logging.consoleHandler" value="ENABLED" />
+  
+  <replace-with class="com.gwidgets.client.ClientFactoryImpl">
+    <when-type-is class="com.gwidgets.client.ClientFactory"/>
+  </replace-with>
 </module>

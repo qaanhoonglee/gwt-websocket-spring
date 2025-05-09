@@ -1,13 +1,14 @@
 package com.gwidgets.elemental;
 
-import static jsinterop.annotations.JsPackage.GLOBAL;
+import com.google.gwt.core.client.JavaScriptObject;
 
-import jsinterop.annotations.JsType;
-
-@JsType(isNative=true, namespace=GLOBAL)
-public class EventTarget {
+public class EventTarget extends JavaScriptObject {
 	
+	protected EventTarget() {}
 	
-	public native void addEventListener(String type, Function listener);
-
+	public final native void addEventListener(String type, Function listener) /*-{
+		this.addEventListener(type, function(e) {
+			listener.@com.gwidgets.elemental.Function::call(Lcom/google/gwt/core/client/JavaScriptObject;)(e);
+		});
+	}-*/;
 }
